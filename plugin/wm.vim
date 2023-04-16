@@ -1,7 +1,7 @@
 " vim:ts=4:sw=4:ai:foldmethod=marker:foldlevel=1:
 " ----------------------------------------------------------------------------
 " Name:     wm.vim
-" Version:  1.3
+" Version:  1.4
 " Date:     2022-08-07
 " Modified: 2023-04-16
 " Author:   stillwwater@gmail.com
@@ -31,31 +31,42 @@ function! WMTerminalFocus()
     endif
 endfunction
 
+function! WMSwitchTab(i)
+    let n = a:i - tabpagenr('$')
+    if n > 0
+        for i in range(n)
+            execute 'tabnew +term'
+        endfor
+    endif
+    execute 'normal' . a:i . 'gt'
+    call WMTerminalFocus()
+endfunction
+
 set tabline=%!WMTabline()
 
 nnoremap <C-a> <Nop>
 
-nnoremap <silent><C-a>1 1gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>2 2gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>3 3gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>4 4gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>5 5gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>6 6gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>7 7gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>8 8gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>9 9gt:call WMTerminalFocus()<CR>
-nnoremap <silent><C-a>0 10gt:call WMTerminalFocus()<CR>
+nnoremap <silent><C-a>1 :call WMSwitchTab(1)<CR>
+nnoremap <silent><C-a>2 :call WMSwitchTab(2)<CR>
+nnoremap <silent><C-a>3 :call WMSwitchTab(3)<CR>
+nnoremap <silent><C-a>4 :call WMSwitchTab(4)<CR>
+nnoremap <silent><C-a>5 :call WMSwitchTab(5)<CR>
+nnoremap <silent><C-a>6 :call WMSwitchTab(6)<CR>
+nnoremap <silent><C-a>7 :call WMSwitchTab(7)<CR>
+nnoremap <silent><C-a>8 :call WMSwitchTab(8)<CR>
+nnoremap <silent><C-a>9 :call WMSwitchTab(9)<CR>
+nnoremap <silent><C-a>0 :call WMSwitchTab(10)<CR>
 
-nnoremap <silent><A-1> 1gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-2> 2gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-3> 3gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-4> 4gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-5> 5gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-6> 6gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-7> 7gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-8> 8gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-9> 9gt:call WMTerminalFocus()<CR>
-nnoremap <silent><A-0> 10gt:call WMTerminalFocus()<CR>
+nnoremap <silent><A-1> :call WMSwitchTab(1)<CR>
+nnoremap <silent><A-2> :call WMSwitchTab(2)<CR>
+nnoremap <silent><A-3> :call WMSwitchTab(3)<CR>
+nnoremap <silent><A-4> :call WMSwitchTab(4)<CR>
+nnoremap <silent><A-5> :call WMSwitchTab(5)<CR>
+nnoremap <silent><A-6> :call WMSwitchTab(6)<CR>
+nnoremap <silent><A-7> :call WMSwitchTab(7)<CR>
+nnoremap <silent><A-8> :call WMSwitchTab(8)<CR>
+nnoremap <silent><A-9> :call WMSwitchTab(9)<CR>
+nnoremap <silent><A-0> :call WMSwitchTab(10)<CR>
 
 nnoremap <silent><C-a>c :tabnew +term<CR>i
 nnoremap <silent><C-a>q :tabclose<CR>
@@ -72,27 +83,27 @@ nnoremap <silent><C-w><Right> <C-w><Right>:call WMTerminalFocus()<CR>
 
 tnoremap <C-a> <Nop>
 
-tnoremap <silent><C-a>1 <C-\><C-n>1gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>2 <C-\><C-n>2gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>3 <C-\><C-n>3gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>4 <C-\><C-n>4gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>5 <C-\><C-n>5gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>6 <C-\><C-n>6gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>7 <C-\><C-n>7gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>8 <C-\><C-n>8gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>9 <C-\><C-n>9gt:call WMTerminalFocus()<CR>
-tnoremap <silent><C-a>0 <C-\><C-n>10gt:call WMTerminalFocus()<CR>
+tnoremap <silent><C-a>1 <C-\><C-n>:call WMSwitchTab(1)<CR>
+tnoremap <silent><C-a>2 <C-\><C-n>:call WMSwitchTab(2)<CR>
+tnoremap <silent><C-a>3 <C-\><C-n>:call WMSwitchTab(3)<CR>
+tnoremap <silent><C-a>4 <C-\><C-n>:call WMSwitchTab(4)<CR>
+tnoremap <silent><C-a>5 <C-\><C-n>:call WMSwitchTab(5)<CR>
+tnoremap <silent><C-a>6 <C-\><C-n>:call WMSwitchTab(6)<CR>
+tnoremap <silent><C-a>7 <C-\><C-n>:call WMSwitchTab(7)<CR>
+tnoremap <silent><C-a>8 <C-\><C-n>:call WMSwitchTab(8)<CR>
+tnoremap <silent><C-a>9 <C-\><C-n>:call WMSwitchTab(9)<CR>
+tnoremap <silent><C-a>0 <C-\><C-n>:call WMSwitchTab(10)<CR>
 
-tnoremap <silent><A-1> <C-\><C-n>1gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-2> <C-\><C-n>2gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-3> <C-\><C-n>3gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-4> <C-\><C-n>4gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-5> <C-\><C-n>5gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-6> <C-\><C-n>6gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-7> <C-\><C-n>7gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-8> <C-\><C-n>8gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-9> <C-\><C-n>9gt:call WMTerminalFocus()<CR>
-tnoremap <silent><A-0> <C-\><C-n>10gt:call WMTerminalFocus()<CR>
+tnoremap <silent><A-1> <C-\><C-n>:call WMSwitchTab(1)<CR>
+tnoremap <silent><A-2> <C-\><C-n>:call WMSwitchTab(2)<CR>
+tnoremap <silent><A-3> <C-\><C-n>:call WMSwitchTab(3)<CR>
+tnoremap <silent><A-4> <C-\><C-n>:call WMSwitchTab(4)<CR>
+tnoremap <silent><A-5> <C-\><C-n>:call WMSwitchTab(5)<CR>
+tnoremap <silent><A-6> <C-\><C-n>:call WMSwitchTab(6)<CR>
+tnoremap <silent><A-7> <C-\><C-n>:call WMSwitchTab(7)<CR>
+tnoremap <silent><A-8> <C-\><C-n>:call WMSwitchTab(8)<CR>
+tnoremap <silent><A-9> <C-\><C-n>:call WMSwitchTab(9)<CR>
+tnoremap <silent><A-0> <C-\><C-n>:call WMSwitchTab(10)<CR>
 
 tnoremap <silent><C-a>c <C-\><C-n>:tabnew +term<CR>i
 tnoremap <silent><C-a>q <C-\><C-n>:tabclose<CR>
